@@ -1,96 +1,140 @@
-Jobify App
+### Jobify App
 
-Full‑stack job tracking app with secure auth, job CRUD, filters/sort/pagination, profile with avatar upload, admin stats, and dark mode.
-Live Demo
+A full-stack MERN application for job search and tracking, featuring robust authentication, comprehensive job management, and an administrative dashboard.
 
-    https://mern-project-4osi.onrender.com/
+🔗 **Live Demo:** [Jobify App](https://mern-project-4osi.onrender.com/)
 
-Stack
+-----
 
-    Frontend: React (Vite), React Router v6.10, Styled Components, React Query, Recharts, React Toastify, Axios
+### 🚀 Tech Stack
 
-    Backend: Node.js, Express, MongoDB, Mongoose, JWT (HTTP‑only cookie), bcryptjs, multer, Cloudinary, express‑validator
+This application is built using the MERN stack with modern libraries and a focus on security, performance, and user experience.
 
-    Security: helmet, express‑mongo‑sanitize, express‑rate‑limit
+#### **Frontend**
 
-Features
+  * **React (Vite):** A fast, modern frontend framework with Vite for a superior development experience.
+  * **React Router v6.10:** Handles client-side routing for a seamless single-page application experience.
+  * **Styled Components:** Manages component-level styling and theme toggling.
+  * **React Query:** Manages server state, caching, and background data synchronization.
+  * **Recharts:** Creates dynamic and responsive charts for the admin dashboard.
+  * **React Toastify:** Provides elegant and customizable notifications.
+  * **Axios:** A promise-based HTTP client for making API requests.
 
-    Register/Login/Logout with hashed passwords and JWT cookies
+#### **Backend**
 
-    First user as admin; role‑based access
+  * **Node.js & Express:** The runtime and web framework for the backend API.
+  * **MongoDB & Mongoose:** A NoSQL database and an elegant object data modeling tool.
+  * **JWT (HTTP-only cookie):** Secures authentication with JSON Web Tokens.
+  * **bcryptjs:** Handles password hashing for robust security.
+  * **multer & Cloudinary:** Manages file uploads and stores user avatars in the cloud.
+  * **express-validator:** A robust middleware for server-side data validation.
 
-    Jobs CRUD with status/type/location
+#### **Security & Performance**
 
-    Search, filter, sort, and paginate jobs
+  * **Helmet:** Secures Express apps by setting various HTTP headers.
+  * **express-mongo-sanitize:** Prevents MongoDB injection attacks.
+  * **express-rate-limit:** Protects against brute-force and DDoS attacks.
+  * **Axios Interceptors:** Implements automatic logout on 401 Unauthorized responses.
 
-    Profile edit with avatar upload (Cloudinary) and cleanup
+-----
 
-    Admin: users/jobs counts
+### ✨ Key Features
 
-    Dark/light theme with persistence
+  * **Authentication:** Secure user registration, login, and logout with hashed passwords and JWTs stored in HTTP-only cookies.
+  * **Authorization:** First user is designated as an admin, providing role-based access control.
+  * **Job Management:** Full CRUD (Create, Read, Update, Delete) functionality for managing jobs, including status, type, and location.
+  * **Job Search & Filtering:** Powerful search, filtering, sorting, and pagination options to easily find jobs.
+  * **User Profile:** Edit user information and upload/update a profile avatar using Cloudinary.
+  * **Admin Dashboard:** View application statistics, including user and job counts.
+  * **Theming:** Persistent dark/light mode for a personalized user experience.
+  * **Optimized Performance:** Leverages React Router loaders/actions for efficient data fetching and React Query for intelligent caching.
+  * **Robust Error Handling:** Centralized validation and error handling for a smoother user experience.
 
-    React Router loaders/actions + React Query caching and invalidations
+-----
 
-    Centralized validation and error handling, axios interceptor auto‑logout
+### ⚙️ Getting Started
 
-Getting Started
+Follow these steps to set up and run the project locally.
 
-    Clone and env
+#### **1. Clone the repository**
 
-bash
-git clone <your-repo-url>
+```bash
+git clone <https://github.com/sujith-ox/mern-project/tree/main>
 cd jobify
+```
 
-Create .env (root):
+#### **2. Setup Environment Variables**
 
-text
+Create a `.env` file in the root directory and add the following variables:
+
+```
 PORT=5100
 NODE_ENV=development
-MONGO_URL=<your-mongodb-connection-string>
-JWT_SECRET=<your-jwt-secret>
+MONGO_URL=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
 JWT_EXPIRES_IN=1d
-CLOUD_NAME=<cloudinary-cloud-name>
-CLOUD_API_KEY=<cloudinary-api-key>
-CLOUD_API_SECRET=<cloudinary-api-secret>
+CLOUD_NAME=your_cloudinary_cloud_name
+CLOUD_API_KEY=your_cloudinary_api_key
+CLOUD_API_SECRET=your_cloudinary_api_secret
+```
 
-    Install
+#### **3. Install Dependencies**
 
-bash
+```bash
 npm run setup-project
+```
 
-    Dev
+#### **4. Run the Application**
 
-bash
+```bash
 npm run dev
+```
 
-    API: http://localhost:5100
+The application will run with the backend API on `http://localhost:5100` and the frontend on `http://localhost:5173`.
 
-    Web: http://localhost:5173 (proxy to API)
+-----
 
-Scripts
+### 🔌 API Endpoints
 
-    setup-project: install root + client
+A quick overview of the main API routes available.
 
-    dev: run API and client concurrently
+| **Endpoint** | **Method** | **Description** |
+| :--- | :--- | :--- |
+| `/api/v1/auth/register` | `POST` | Registers a new user |
+| `/api/v1/auth/login` | `POST` | Logs in a user |
+| `/api/v1/auth/logout` | `GET` | Logs out the current user |
+| `/api/v1/jobs` | `GET` | Retrieves all jobs with optional queries |
+| `/api/v1/jobs` | `POST` | Creates a new job |
+| `/api/v1/jobs/:id` | `GET` | Retrieves a single job by ID |
+| `/api/v1/jobs/:id` | `PATCH` | Updates a job by ID |
+| `/api/v1/jobs/:id` | `DELETE` | Deletes a job by ID |
+| `/api/v1/jobs/stats` | `GET` | Provides monthly job application stats |
+| `/api/v1/users/current-user`| `GET` | Gets the authenticated user's data |
+| `/api/v1/users/update-user`| `PATCH`| Updates the current user's data |
+| `/api/v1/users/admin/app-stats`| `GET`| Admin-only endpoint for app stats |
 
-    server / client: run each separately
+-----
 
-    setup-production-app: install + build client for server hosting
+### 🚀 Deployment
 
-API Routes
+#### **Local Production Build**
 
-    Auth: POST /auth/register, POST /auth/login, GET /auth/logout
+You can serve the frontend from the Express server.
 
-    Users: GET /users/current-user, PATCH /users/update-user, GET /users/admin/app-stats
+1.  Navigate into the `client` directory: `cd client`
+2.  Build the client: `npm run build`
+3.  The server will automatically serve the `/client/dist` directory.
 
-    Jobs: GET /jobs (query: search, jobStatus, jobType, sort, page, limit), POST /jobs, GET /jobs/:id, PATCH /jobs/:id, DELETE /jobs/:id, GET /jobs/stats
+#### **Render (or similar PaaS)**
 
-Build/Deploy
+The project includes a script to prepare for production deployment.
 
-    Local: cd client && npm run build, serve build from Express
+```bash
+npm run setup-production-app
+```
 
-    Render: use “setup-production-app” to build client; serve ./client/dist from Express
+This command installs dependencies, builds the client, and sets up the server to serve the static files, making it ready for deployment on platforms like Render.
 
-License
+### 📄 License
 
-MIT
+This project is licensed under the **MIT License**. See the `LICENSE` file for details.
